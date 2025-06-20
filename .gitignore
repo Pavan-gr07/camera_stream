@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+camera-app2
+dist-react
 
 # Editor directories and files
 .vscode/*
