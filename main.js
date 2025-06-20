@@ -23,7 +23,7 @@ const createWindow = () => {
         },
     });
 
-    mainWindow.loadFile(path.join(__dirname, 'dist-electron/index.html'));
+    mainWindow.loadFile(path.join(__dirname, 'dist/index.html'));
 
     mainWindow.webContents.on('did-finish-load', () => {
         mainWindow.webContents.send('set-ip', ip); // ✅ send to renderer

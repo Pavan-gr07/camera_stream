@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "main.cjs",
+  "main": "main.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -12,6 +12,12 @@
     "electron:build": "npm run build && electron-builder"
   },
   "dependencies": {
+    "child_process": "^1.0.2",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "fluent-ffmpeg": "^2.1.3",
+    "nodemon": "^3.1.10",
+    "onvif": "^0.8.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
