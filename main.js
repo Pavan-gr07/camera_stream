@@ -17,15 +17,27 @@ const createWindow = () => {
         webPreferences: {
             contextIsolation: true,
             nodeIntegration: false,
-            preload: path.join(__dirname, 'preload.js'),
+            // preload: path.join(__dirname, 'preload.js'),
         },
     });
 
     if (isDev) {
-        // 🟢 Dev: Load Vite server
-        mainWindow.loadURL('http://localhost:5173');
+        // Get the IP from environment variable, fallback to localhost
+        const viteUID = process.env.VITE_UID || '192.168.100.56';
+        const devURL = `http://localhost:5173`;
+
+        console.log(`Loading Electron app from: ${devURL}`);
+        mainWindow.loadURL(devURL);
+
+        // Send the IP to the renderer process
+        mainWindow.webContents.once('dom-ready', () => {
+            mainWindow.webContents.send('set-ip', viteUID);
+        });
+
+        // // Optional: Open DevTools in development
+        // mainWindow.webContents.openDevTools();
     } else {
-        // 🔵 Production: Load built index.html from dist folder
+        // Production: Load built index.html from dist folder
         const indexPath = path.join(__dirname, 'dist-react/index.html');
 
         if (fs.existsSync(indexPath)) {

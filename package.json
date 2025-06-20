@@ -5,11 +5,12 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "cross-env VITE_UID=%VITE_UID% vite",
     "build": "vite build",
     "electron": "electron .",
     "electron:dev": "concurrently \"npm run dev\" \"npm run electron\"",
-    "electron:build": "npm run build && electron-builder"
+    "electron:build": "npm run build && electron-builder",
+    "start:ip": "concurrently \"cross-env VITE_UID=%VITE_UID% vite\" \"cross-env VITE_UID=%VITE_UID% electron .\""
   },
   "dependencies": {
     "child_process": "^1.0.2",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.4.1",
     "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
     "electron": "^36.5.0",
     "electron-builder": "^26.0.12",
     "vite": "^6.3.5"
